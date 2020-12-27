@@ -1,0 +1,4 @@
+pip install --upgrade --user pip
+pip install pygame
+pip install mysql-connector-python
+
