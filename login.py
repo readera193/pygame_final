@@ -77,14 +77,12 @@ class LoginWindow:
         elif self.password.get() == "":
             messagebox.showinfo("Alert!", "Enter Password First")
         else:
-            # TODO: 遠端執行
             res = DB.user_login(data)
             if res:
                 messagebox.showinfo("Message", "Login Successfully")
                 self.win.destroy()
                 print(res)
                 self.user_id = res[0]
-                #playgame.main()
             else:
                 messagebox.showinfo("Alert!", "Wrong username/password")
 

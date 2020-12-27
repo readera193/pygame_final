@@ -84,11 +84,14 @@ def redrawWindow(win, game, p):
 
 
 btns = [Button("Rock", 50, 500, (0,0,0)), Button("Scissors", 250, 500, (255,0,0)), Button("Paper", 450, 500, (0,255,0))]
-def main():
+
+
+
+def main(user_id):
     run = True
     clock = pygame.time.Clock()
     n = Network()
-    player, user_id = n.getP()
+    player = n.getP()
     print("You are player", player)
 
     while run:
@@ -142,6 +145,7 @@ def main():
         redrawWindow(win, game, player)
 
 def menu_screen():
+    """
     run = True
     clock = pygame.time.Clock()
 
@@ -159,8 +163,9 @@ def menu_screen():
                 run = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 run = False
-
-    main()
+    """
+    user_id = login.main()
+    main(user_id)
 
 while True:
     menu_screen()

@@ -1,7 +1,6 @@
 # network.py
 import socket
 import pickle
-import login
  
 class Network:
     def __init__(self):
@@ -12,8 +11,7 @@ class Network:
         self.p = self.connect()
  
     def getP(self):
-        user_id = login.main()
-        return ( int(self.p), user_id )
+        return int(self.p)
  
     def connect(self):
         try:

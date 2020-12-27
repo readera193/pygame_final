@@ -41,6 +41,7 @@ CREATE TABLE `players` (
 
 INSERT INTO `players` (`user_id`, `username`, `password`, `score`) VALUES
 ('test', 'test', 'test', 0),
+('tt', 'tt', 'tt', 0),
 ('user01', '我我我', 'user01', 0),
 ('user02', '我我', 'user02', 0);
 
