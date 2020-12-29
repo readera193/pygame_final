@@ -7,6 +7,9 @@ pygame.font.init()
 
 width = 700
 height = 700
+
+user_id = login.main()
+
 win = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Client")
 
@@ -87,12 +90,12 @@ btns = [Button("Rock", 50, 500, (0,0,0)), Button("Scissors", 250, 500, (255,0,0)
 
 
 
-def main(user_id):
+def menu_screen(user_id):
     run = True
     clock = pygame.time.Clock()
     n = Network()
     player = n.getP()
-    print("You are player", player)
+    print("You are player", user_id)
 
     while run:
         clock.tick(60)
@@ -144,9 +147,6 @@ def main(user_id):
 
         redrawWindow(win, game, player)
 
-def menu_screen():
-    user_id = login.main()
-    main(user_id)
 
 while True:
-    menu_screen()
+    menu_screen(user_id)
