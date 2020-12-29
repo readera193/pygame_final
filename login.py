@@ -1,6 +1,6 @@
 from tkinter import Tk, Canvas, YES, BOTH, Frame, Button, Label, Entry, messagebox
 from digital_punch_db import Digital_punch_DB
-import test
+from network import Network
 
 DB = Digital_punch_DB()
 
@@ -77,21 +77,17 @@ class LoginWindow:
         elif self.password.get() == "":
             messagebox.showinfo("Alert!", "Enter Password First")
         else:
-            res = DB.user_login(data)
-            if res:
+            n = Network()
+            res = n.connect({"action": "login", "info": data})
+            if res != "None":
                 messagebox.showinfo("Message", "Login Successfully")
                 self.win.destroy()
                 print(res)
-                self.user_id = res[0]
+                self.user_id = res
             else:
                 messagebox.showinfo("Alert!", "Wrong username/password")
+
 
 def main():
     window = LoginWindow()
     return window.add_frame()
-
-
-if __name__=='__main__':
-    main()
-
-

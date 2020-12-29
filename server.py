@@ -1,12 +1,14 @@
 import socket
 from _thread import *
 import pickle
+import json
 from game import Game
 from digital_punch_db import Digital_punch_DB
- 
+
 server = "127.0.0.1"
 port = 5555
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+db = Digital_punch_DB()
 
 try:
     s.bind((server, port))
@@ -21,8 +23,30 @@ games = {}
 idCount = 0
 
 
-def threaded_client(conn, p, gameId):
+def threaded_client(conn, addr):
     global idCount
+    opration_dict = json.loads(conn.recv(4096).decode())
+    if opration_dict["action"] == "login":
+        result = db.user_login(tuple(opration_dict["info"]))
+        if result:
+            conn.sendall(result.encode())
+        else:
+            conn.sendall("None".encode())
+        conn.close()
+        return
+
+    print("Connected to:", addr)
+
+    idCount += 1
+    p = 0
+    gameId = (idCount - 1)//2
+    if idCount % 2 == 1:
+        games[gameId] = Game(gameId)
+        print("Creating a new game...")
+    else:
+        games[gameId].ready = True
+        p = 1
+
     conn.send(str.encode(str(p)))
 
     reply = ""
@@ -40,7 +64,6 @@ def threaded_client(conn, p, gameId):
                         game.resetWent()
                     elif data[:3] == "add":
                         print(data[3:] + " won")
-                        db = Digital_punch_DB()
                         db.winner_add_score(data[3:])
                     elif data != "get":
                         game.play(p, data)
@@ -63,16 +86,4 @@ def threaded_client(conn, p, gameId):
 
 while True:
     conn, addr = s.accept()
-    print("Connected to:", addr)
-
-    idCount += 1
-    p = 0
-    gameId = (idCount - 1)//2
-    if idCount % 2 == 1:
-        games[gameId] = Game(gameId)
-        print("Creating a new game...")
-    else:
-        games[gameId].ready = True
-        p = 1
-
-    start_new_thread(threaded_client, (conn, p, gameId))
+    start_new_thread(threaded_client, (conn, addr))

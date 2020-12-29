@@ -12,9 +12,13 @@ class Digital_punch_DB:
         self.cursor = self.con.cursor(buffered=True)
 
     def user_login(self, tup):
+        print("tried login tuple", tup)
         self.cursor.execute(
             "SELECT * FROM players WHERE user_id=%s AND password=%s", tup)
-        return (self.cursor.fetchone())
+        result = self.cursor.fetchone()
+        if result:
+            return result[0]
+        return result
 
     def winner_add_score(self, user_id):
         self.cursor.execute(

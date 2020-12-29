@@ -1,6 +1,6 @@
 # network.py
 import socket
-import pickle
+import pickle, json
  
 class Network:
     def __init__(self):
@@ -8,14 +8,13 @@ class Network:
         self.server = "127.0.0.1"
         self.port = 5555
         self.addr = (self.server, self.port)
-        self.p = self.connect()
  
-    def getP(self):
-        return int(self.p)
- 
-    def connect(self):
+    # {"action":"login", "info":(<user_id>, <password>)} return user_id
+    # {"action":"getPlayer"} return player
+    def connect(self, opration_dict):
         try:
             self.client.connect(self.addr)
+            self.client.send(json.dumps(opration_dict).encode())
             return self.client.recv(2048).decode()
         except:
             pass
