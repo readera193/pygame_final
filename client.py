@@ -100,6 +100,7 @@ def menu_screen(user_id):
     n = Network()
     player = int(n.connect({"action": "getPlayer"}))
 
+    print("Hello, ", user_id)
     print("You are player", player)
 
     while run:

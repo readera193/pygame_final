@@ -1,12 +1,16 @@
 # network.py
 import socket
 import pickle, json
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
  
 class Network:
     def __init__(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server = "127.0.0.1"
-        self.port = 5555
+        self.server = os.getenv("SERVER")
+        self.port = int(os.getenv("PORT"))
         self.addr = (self.server, self.port)
  
     # {"action":"login", "info":(<user_id>, <password>)} return user_id

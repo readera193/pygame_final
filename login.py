@@ -82,7 +82,6 @@ class LoginWindow:
             if res != "None":
                 messagebox.showinfo("Message", "Login Successfully")
                 self.win.destroy()
-                print(res)
                 self.user_id = res
             else:
                 messagebox.showinfo("Alert!", "Wrong username/password")

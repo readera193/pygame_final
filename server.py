@@ -4,9 +4,13 @@ import pickle
 import json
 from game import Game
 from digital_punch_db import Digital_punch_DB
+from dotenv import load_dotenv
+import os
 
-server = "127.0.0.1"
-port = 5555
+load_dotenv()
+
+server = os.getenv("SERVER")
+port = int(os.getenv("PORT"))
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 db = Digital_punch_DB()
 
