@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- 資料庫： `pygame`
 --
+CREATE DATABASE IF NOT EXISTS `pygame` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `pygame`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +30,7 @@ SET time_zone = "+00:00";
 -- 資料表結構 `players`
 --
 
+DROP TABLE IF EXISTS `players`;
 CREATE TABLE `players` (
   `user_id` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -42,7 +45,7 @@ CREATE TABLE `players` (
 INSERT INTO `players` (`user_id`, `username`, `password`, `score`) VALUES
 ('test', 'test', 'test', 0),
 ('tt', 'tt', 'tt', 0),
-('user01', '我我我', 'user01', 0),
+('user01', '我', 'user01', 0),
 ('user02', '我我', 'user02', 0);
 
 --
