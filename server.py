@@ -83,7 +83,7 @@ def threaded_client(conn, addr):
     idCount -= 1
     conn.close()
 
-
-while True:
-    conn, addr = s.accept()
-    start_new_thread(threaded_client, (conn, addr))
+if __name__ == "__main__":
+    while True:
+        conn, addr = s.accept()
+        start_new_thread(threaded_client, (conn, addr))

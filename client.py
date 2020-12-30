@@ -98,7 +98,7 @@ def menu_screen(user_id):
     run = True
     clock = pygame.time.Clock()
     n = Network()
-    player = n.connect({"action": "getPlayer"})
+    player = int(n.connect({"action": "getPlayer"}))
 
     print("You are player", player)
 
