@@ -1,6 +1,6 @@
 ## Require
-* Anaconda
-* XAMPP
+* [Anaconda](https://www.anaconda.com/products/individual)
+* [XAMPP](https://www.apachefriends.org/zh_tw/index.html)
 
 ## Install
 * 執行 !install_modules.bat
