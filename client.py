@@ -5,6 +5,7 @@ import pickle
 import json
 import login
 
+user_id = login.main()
 
 pygame.mixer.init()
 pygame.font.init()
@@ -12,14 +13,9 @@ pygame.font.init()
 width = 700
 height = 700
 
-
 soundWin = pygame.mixer.Sound("sound/win.mp3")
 soundTie = pygame.mixer.Sound("sound/tie.wav")
 soundLost = pygame.mixer.Sound("sound/lost.ogg")
-
-
-user_id = login.main()
-
 win = pygame.display.set_mode((width, height))
 pygame.display.set_caption("Client")
 
