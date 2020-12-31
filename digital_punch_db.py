@@ -17,7 +17,7 @@ class Digital_punch_DB:
             "SELECT * FROM players WHERE user_id=%s AND password=%s", tup)
         result = self.cursor.fetchone()
         if result:
-            return result[0]
+            return result[0]+","+str(result[-1])
         return result
 
     def winner_add_score(self, user_id):

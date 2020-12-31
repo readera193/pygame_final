@@ -26,6 +26,7 @@ class LoginWindow:
         self.win.title("Digital punch Login")
 
         self.user_id = ""
+        self.score = 0
 
     def add_frame(self):
         x, y = 80, 50
@@ -60,7 +61,7 @@ class LoginWindow:
 
         self.win.mainloop()
 
-        return self.user_id
+        return self.user_id, self.score
 
     def login(self):
         # get the data and store it into tuple (data)
@@ -79,7 +80,8 @@ class LoginWindow:
             if res != "None":
                 messagebox.showinfo("Message", "Login Successfully")
                 self.win.destroy()
-                self.user_id = res
+                print(res)
+                self.user_id, self.score = res.split(",")
             else:
                 messagebox.showinfo("Alert!", "Wrong username/password")
 
