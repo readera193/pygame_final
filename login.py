@@ -1,8 +1,5 @@
 from tkinter import Tk, Canvas, YES, BOTH, Frame, Button, Label, Entry, messagebox
-from digital_punch_db import Digital_punch_DB
 from network import Network
-
-DB = Digital_punch_DB()
 
 
 class LoginWindow:

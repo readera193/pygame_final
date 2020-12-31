@@ -4,10 +4,19 @@ from network import Network
 import pickle
 import json
 import login
+
+
+pygame.mixer.init()
 pygame.font.init()
 
 width = 700
 height = 700
+
+
+soundWin = pygame.mixer.Sound("sound/win.mp3")
+soundTie = pygame.mixer.Sound("sound/tie.wav")
+soundLost = pygame.mixer.Sound("sound/lost.ogg")
+
 
 user_id = login.main()
 
@@ -125,11 +134,14 @@ def menu_screen(user_id):
             font = pygame.font.SysFont("comicsans", 90)
             if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
                 text = font.render("You Won!", 1, (255, 0, 0))
+                soundWin.play()
                 n.send("add"+user_id)
             elif game.winner() == -1:
                 text = font.render("Tie Game!", 1, (255, 0, 0))
+                soundTie.play()
             else:
                 text = font.render("You Lost...", 1, (255, 0, 0))
+                soundLost.play()
 
             win.blit(text, (width/2 - text.get_width() /
                             2, height/2 - text.get_height()/2))
