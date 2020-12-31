@@ -3,7 +3,7 @@ from _thread import *
 import pickle
 import json
 from game import Game
-from digital_punch_db import Digital_punch_DB
+from db import Database
 from dotenv import load_dotenv
 import os
 
@@ -12,7 +12,7 @@ load_dotenv()
 server = os.getenv("SERVER")
 port = int(os.getenv("PORT"))
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-db = Digital_punch_DB()
+db = Database()
 
 try:
     s.bind((server, port))

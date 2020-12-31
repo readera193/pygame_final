@@ -1,7 +1,7 @@
 import mysql.connector
 
 
-class Digital_punch_DB:
+class Database:
     def __init__(self, host="localhost", user="root", password="", db="pygame"):
         self.con = mysql.connector.connect(
             host=host,
