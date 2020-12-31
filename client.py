@@ -5,7 +5,8 @@ import pickle
 import json
 import login
 
-user_id = login.main()
+user_id, score = login.main()
+score = int(score)
 
 pygame.mixer.init()
 pygame.font.init()
@@ -56,6 +57,10 @@ def redrawWindow(win, game, p):
                         2, height/2 - text.get_height()/2))
     else:
         font = pygame.font.SysFont("comicsans", 60)
+
+        text = font.render("Score: "+str(score), 1, (255, 0, 0))
+        win.blit(text, (230, 100))
+
         text = font.render("Your Move", 1, (0, 255, 255))
         win.blit(text, (80, 200))
 
@@ -100,6 +105,7 @@ btns = [Button("Rock", 50, 500, (0, 0, 0)), Button(
 
 
 def menu_screen(user_id):
+    global score
     run = True
     clock = pygame.time.Clock()
     n = Network()
@@ -130,6 +136,7 @@ def menu_screen(user_id):
             font = pygame.font.SysFont("comicsans", 90)
             if (game.winner() == 1 and player == 1) or (game.winner() == 0 and player == 0):
                 text = font.render("You Won!", 1, (255, 0, 0))
+                score += 1
                 soundWin.play()
                 n.send("add"+user_id)
             elif game.winner() == -1:
