@@ -23,7 +23,7 @@ class LoginWindow:
         self.win.resizable(width=False, height=False)
 
         # change the title of the window
-        self.win.title("Digital punch Login")
+        self.win.title("Login")
 
         self.user_id = ""
         self.score = 0
